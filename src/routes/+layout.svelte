@@ -2,7 +2,7 @@
   import '../app.css';
   import { page } from '$app/state';
   let { children } = $props();
-  const links = [['/dashboard', 'Inicio'], ['/ventas/nueva', 'Nueva venta'], ['/ventas', 'Ventas'], ['/productos', 'Productos']];
+  const links = [['/dashboard', 'Inicio'], ['/ventas/nueva', 'Nueva venta'], ['/ventas', 'Ventas'], ['/productos', 'Productos'], ['/stock', 'Stock'], ['/clientes', 'Clientes']];
 </script>
 
 {#if page.url.pathname !== '/login'}

@@ -16,3 +16,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{ou
 table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
 .err{color:var(--warn)}.muted{color:var(--muted)}.anulada{text-decoration:line-through;opacity:.6}
 .stat{font-size:1.8rem;font-weight:700}
+.item{padding:10px 0;border-bottom:1px solid var(--line)}.off{opacity:.55}
+button.btn.sec{background:var(--card);color:var(--ink);border-color:var(--line)}
+button.btn.danger{background:var(--card);color:var(--warn);border-color:var(--warn)}
+.ok{color:var(--accent)}label.chk{display:flex;gap:6px;align-items:center}
+.lbl{font-size:.8rem;color:var(--muted);display:block}
