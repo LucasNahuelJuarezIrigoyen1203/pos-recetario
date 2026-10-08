@@ -21,3 +21,13 @@ button.btn.sec{background:var(--card);color:var(--ink);border-color:var(--line)}
 button.btn.danger{background:var(--card);color:var(--warn);border-color:var(--warn)}
 .ok{color:var(--accent)}label.chk{display:flex;gap:6px;align-items:center}
 .lbl{font-size:.8rem;color:var(--muted);display:block}
+textarea{font:inherit;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);width:100%}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:12px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;border:1px solid var(--line);font-size:.8rem}
+.solo-print{display:none}
+a{color:var(--accent)}
+@media print{
+  :root{--bg:#fff;--ink:#000;--muted:#444;--line:#999;--card:#fff}
+  nav,.noprint{display:none!important}.solo-print{display:block}
+  main{max-width:none;padding:0}
+}

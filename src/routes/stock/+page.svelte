@@ -6,13 +6,14 @@
   const bajo = (i: any) => Number(i.stock_actual) <= Number(i.stock_minimo);
 </script>
 <h1>Stock</h1>
-<p class="muted">Acá se cargan los insumos (harina, huevos, pollo...). Cada venta descuenta stock según la receta del producto.</p>
+<p class="muted">Acá se cargan los insumos (harina, huevos, pollo...). Cada venta descuenta stock según la receta del producto, que se arma en <a href="/recetas">Recetas</a>.</p>
 <form method="post" action="?/crear" use:enhance class="row" style="margin-bottom:16px">
   <input name="nombre" placeholder="Insumo" required class="grow" />
   <input name="unidad" placeholder="Unidad (kg, u, l)" style="width:130px" />
   <input name="stock_actual" type="number" step="any" placeholder="Stock" style="width:100px" />
   <input name="stock_minimo" type="number" step="any" placeholder="Mínimo" style="width:100px" />
   <input name="costo_unitario" type="number" min="0" step="any" placeholder="Costo" style="width:100px" />
+  <select name="proveedor_id"><option value="">Sin proveedor</option>{#each data.proveedores as p}<option value={p.id}>{p.nombre}</option>{/each}</select>
   <button class="btn">Agregar insumo</button>
 </form>
 {#if form?.error}<p class="err">{form.error}</p>{/if}
@@ -26,6 +27,9 @@
     <div><span class="lbl">Stock</span><input name="stock_actual" type="number" step="any" value={i.stock_actual} style="width:100px" /></div>
     <div><span class="lbl">Mínimo</span><input name="stock_minimo" type="number" step="any" value={i.stock_minimo} style="width:100px" /></div>
     <div><span class="lbl">Costo</span><input name="costo_unitario" type="number" min="0" step="any" value={i.costo_unitario} style="width:100px" /></div>
+    <div><span class="lbl">Proveedor</span>
+      <select name="proveedor_id"><option value="">—</option>{#each data.proveedores as p}<option value={p.id} selected={p.id === i.proveedor_id}>{p.nombre}</option>{/each}</select>
+    </div>
     <button class="btn">Guardar</button>
     <button class="btn danger" formaction="?/borrar" onclick={confirmar}>Borrar</button>
   </form>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import { waLink } from '$lib/whatsapp';
   let { data, form } = $props();
   const keep = () => async ({ update }: any) => { await update({ reset: false }); };
   const confirmar = (e: Event) => { if (!confirm('¿Borrar este cliente?')) e.preventDefault(); };
@@ -23,6 +24,7 @@
     <input name="email" type="email" value={c.email ?? ''} placeholder="Email" aria-label="Email" />
     <input name="notas" value={c.notas ?? ''} placeholder="Notas" class="grow" aria-label="Notas" />
     <button class="btn">Guardar</button>
+    {#if waLink(c.telefono)}<a href={waLink(c.telefono)} target="_blank" rel="noopener">WhatsApp</a>{/if}
     <button class="btn danger" formaction="?/borrar" onclick={confirmar}>Borrar</button>
   </form>
 {/each}

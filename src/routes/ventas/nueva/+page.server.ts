@@ -1,10 +1,11 @@
 import { fail, redirect } from '@sveltejs/kit';
 export const load = async ({ locals }) => {
-  const [p, c] = await Promise.all([
+  const [p, c, k] = await Promise.all([
     locals.supabase.from('productos').select('id,nombre,precio_venta,color').eq('activo', true).order('nombre'),
-    locals.supabase.from('clientes').select('id,nombre').order('nombre')
+    locals.supabase.from('clientes').select('id,nombre').order('nombre'),
+    locals.supabase.from('caja_sesiones').select('id', { count: 'exact', head: true }).is('fecha_cierre', null)
   ]);
-  return { productos: p.data ?? [], clientes: c.data ?? [] };
+  return { productos: p.data ?? [], clientes: c.data ?? [], cajaAbierta: (k.count ?? 0) > 0 };
 };
 export const actions = {
   default: async ({ request, locals }) => {

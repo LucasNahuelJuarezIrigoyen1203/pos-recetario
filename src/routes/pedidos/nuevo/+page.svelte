@@ -11,8 +11,8 @@
   }
   function restar(l: Linea) { l.cant--; if (l.cant <= 0) lineas = lineas.filter((x) => x !== l); }
 </script>
-<h1>Nueva venta</h1>
-{#if !data.cajaAbierta}<p class="err">No hay caja abierta: esta venta no va a figurar en ningún cierre. <a href="/caja">Abrir caja</a></p>{/if}
+<p><a href="/pedidos">← Pedidos</a></p>
+<h1>Nuevo pedido</h1>
 {#if data.productos.length === 0}<p class="muted">Primero creá productos en la sección Productos.</p>{/if}
 <div class="tiles">
   {#each data.productos as p}
@@ -31,12 +31,10 @@
   {/each}
   <input type="hidden" name="items" value={items} />
   <div class="row" style="margin:16px 0">
-    <select name="metodo" required>
-      <option value="efectivo">Efectivo</option><option value="transferencia">Transferencia</option>
-      <option value="tarjeta">Tarjeta</option><option value="otro">Otro</option>
-    </select>
+    <label>Entrega <input name="entrega" type="date" required /></label>
     <select name="cliente"><option value="">Sin cliente</option>{#each data.clientes as c}<option value={c.id}>{c.nombre}</option>{/each}</select>
+    <input name="sena" type="number" min="0" step="any" placeholder="Seña" style="width:120px" />
   </div>
   {#if form?.error}<p class="err">{form.error}</p>{/if}
-  <button class="btn">Registrar venta · {ars(total)}</button>
+  <button class="btn">Guardar pedido · {ars(total)}</button>
 </form>
